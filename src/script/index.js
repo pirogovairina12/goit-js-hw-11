@@ -32,14 +32,12 @@ function onSubmit(event) {
     newsPictures.searchQuery = value;
     newsPictures.resetPage();
 
-    loadMoreBtn.show();
+    // loadMoreBtn.show()
     clearNewsList();
     fetchArticles().finally(() => form.reset());
   }
 
-  // if (!markup) {
-  //   loadMoreBtn.hide();
-  // }
+
 }
 
 async function fetchArticles() {
@@ -60,11 +58,14 @@ async function fetchArticles() {
 async function getArticlesMarkup() {
   try {
     const articles = await newsPictures.getNews();
+    if(articles.length >= 40){
+      loadMoreBtn.show();}
 
-    if (!articles) {
+
+    else {
       loadMoreBtn.hide();
-      return '';
     }
+
     // if (articles.length === 0) throw new Error('No data');
 
     return articles.reduce(
@@ -77,7 +78,7 @@ async function getArticlesMarkup() {
 }
 
 
-function createMarkup({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) {
+function createMarkup({webformatURL, largeImageURL, tags, likes, views, comments, downloads}) {
   return `<a href="${largeImageURL}">
     <img src="${webformatURL}" alt="${tags}" title="" data-large="${largeImageURL}" />
     <div class="photo-card">
