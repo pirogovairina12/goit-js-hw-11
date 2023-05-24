@@ -36,6 +36,10 @@ function onSubmit(event) {
     clearNewsList();
     fetchArticles().finally(() => form.reset());
   }
+
+  // if (!markup) {
+  //   loadMoreBtn.hide();
+  // }
 }
 
 async function fetchArticles() {

@@ -30,8 +30,8 @@ export default class LoadMoreBtn {
     this.button.textContent = "Load more";
   }
 
-  end() {
-    this.button.disabled = true;
-    this.button.textContent = "The end!";
-  }
+  // end() {
+  //   this.button.disabled = true;
+  //   this.button.textContent = "The end!";
+  // }
 }
