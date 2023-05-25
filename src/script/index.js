@@ -32,7 +32,7 @@ function onSubmit(event) {
     newsPictures.searchQuery = value;
     newsPictures.resetPage();
 
-    // loadMoreBtn.show()
+
     clearNewsList();
     fetchArticles().finally(() => form.reset());
   }
@@ -62,11 +62,13 @@ async function getArticlesMarkup() {
       loadMoreBtn.show();}
 
 
-    else {
+    if(articles.length<40) {
       loadMoreBtn.hide();
     }
 
-    // if (articles.length === 0) throw new Error('No data');
+    if (newsPictures.page === newsPictures.totalPages + 1){
+      loadMoreBtn.hide();
+    }
 
     return articles.reduce(
       (markup, article) => markup + createMarkup(article),

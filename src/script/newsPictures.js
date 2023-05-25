@@ -7,6 +7,7 @@ export default class newGallery {
   constructor() {
     this.page = 0;
     this.searchQuery = '';
+    this.totalPages = 0;
     this.getTotalHits();
   }
 
@@ -16,7 +17,7 @@ export default class newGallery {
     try {
       const response = await axios.get(totalHitsUrl);
       const totalHits = response.data.totalHits;
-      this.page = Math.ceil(totalHits / 40);
+      this.totalPages = Math.ceil(totalHits / 40);
     } catch (error) {
       console.error(error);
     }
@@ -35,6 +36,7 @@ export default class newGallery {
   incrementPage() {
     this.page += 1;
   }
+
 }
 
 
